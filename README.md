@@ -8,12 +8,10 @@ BDD framework used is Behave which is an Cucumber clone for Python.
 
 Mobile Test Automation framework is Appium which is most supported right now.
 
-Install Behave and Appium:
+**Install Behave and Appium:**
 
-pip install appium-python-client
-pip install behave
-
-**Usage:**
+~ pip install appium-python-client
+~ pip install behave
 
 # In order to execute your test script
 ~ behave 
