@@ -13,8 +13,8 @@ Install Behave and Appium:
 pip install appium-python-client
 pip install behave
 
-**Usage:
-**
+**Usage:**
+
 # In order to execute your test script
 ~ behave 
 
