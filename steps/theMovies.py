@@ -59,3 +59,63 @@ def verifySelectMovieName(context):
         print("Expect movie name is incorrect")
         assert False
 
+
+@then('Go back to previous screen.')
+def previousScreen(context):
+    context.driver.back()
+
+
+@then('Filter Movie by their year.')
+def moviesFilterByYear(context):
+    context.driver.find_element("xpath",
+                                "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget"
+                                ".FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout["
+                                "2]/android.widget.LinearLayout/android.view.ViewGroup/android.widget.CheckBox["
+                                "5]").click()
+
+
+@then('Verify user filtered movie year.')
+def verifyMoviesYear(context):
+    selectedYear = context.driver.find_element("xpath",
+                                               "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout"
+                                               "/android.widget.FrameLayout/android.widget.FrameLayout/android.widget"
+                                               ".FrameLayout/androidx.appcompat.widget.LinearLayoutCompat/android.widget"
+                                               ".FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout"
+                                               "/android.widget.ScrollView/android.widget.LinearLayout/android.widget"
+                                               ".LinearLayout["
+                                               "1]/android.widget.LinearLayout/android.view.ViewGroup/android.widget"
+                                               ".CheckBox[1]").text
+
+    time.sleep(2)
+
+    context.driver.find_element("xpath", "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout"
+                                         "/android.widget.FrameLayout/android.widget.FrameLayout/android.widget"
+                                         ".FrameLayout/androidx.appcompat.widget.LinearLayoutCompat/android.widget"
+                                         ".FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout"
+                                         "/android.widget.ScrollView/android.widget.LinearLayout/android.widget"
+                                         ".LinearLayout["
+                                         "1]/android.widget.LinearLayout/android.view.ViewGroup/android.widget"
+                                         ".CheckBox[1]").click()
+
+    context.driver.find_element("id", "android:id/button1").click()
+    time.sleep(5)
+
+    moviesListing = context.driver.find_elements("id", "com.mobile_app.themovie:id/li_release_year")
+    moviename = context.driver.find_elements("id", "com.mobile_app.themovie:id/li_tv_title")
+    count = len(moviesListing)
+    print(count)
+
+    context.texts = []
+    for movienametex in moviename:
+        for moviesListingText in moviesListing:
+            movienametext = movienametex.text
+            text = moviesListingText.text
+            print("movie name: ", movienametext)
+            print("movie year: ", text)
+            if selectedYear == text:
+                assert True
+
+            else:
+                assert False
+
+
