@@ -15,7 +15,7 @@ pip install behave
 
 Usage:
 
-# In order to select configuration you need to set tags in execution
+# In order to execute your test script
 ~ behave 
 
 # In order to prepare report run this cmd
