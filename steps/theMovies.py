@@ -119,3 +119,41 @@ def verifyMoviesYear(context):
                 assert False
 
 
+@then('Filter movie by their popularity.')
+def moviesFilterByPopularity(context):
+    context.driver.find_element("xpath",
+                                "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget"
+                                ".FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout["
+                                "2]/android.widget.LinearLayout/android.view.ViewGroup/android.widget.CheckBox["
+                                "5]").click()
+
+    context.driver.find_element("xpath", "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android"
+                                         ".widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout"
+                                         "/androidx.appcompat.widget.LinearLayoutCompat/android.widget.FrameLayout"
+                                         "/android.widget.FrameLayout/android.widget.LinearLayout/android.widget"
+                                         ".ScrollView/android.widget.LinearLayout/android.widget.LinearLayout["
+                                         "1]/android.widget.LinearLayout/android.view.ViewGroup/android.widget"
+                                         ".CheckBox[1]").click()
+
+
+@then('Verify user filtered movie popularity.')
+def verifyMoviePopularity(context):
+
+    context.driver.find_element("xpath", "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android"
+                                         ".widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout"
+                                         "/androidx.appcompat.widget.LinearLayoutCompat/android.widget.FrameLayout"
+                                         "/android.widget.FrameLayout/android.widget.LinearLayout/android.widget"
+                                         ".ScrollView/android.widget.LinearLayout/android.widget.LinearLayout["
+                                         "2]/android.widget.LinearLayout/android.view.ViewGroup/android.widget"
+                                         ".CheckBox[1]").click()
+
+    context.driver.find_element("id", "android:id/button1").click()
+
+    movieRating = context.driver.find_element("id", "com.mobile_app.themovie:id/li_tv_vote").text
+
+    if movieRating == "9":
+        print("Test Passed")
+        assert True
+    else:
+        print("Test Failed")
+        assert False
